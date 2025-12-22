@@ -32,6 +32,11 @@
     "webpack-chain": "^6.5.1"
   },
   "devDependencies": {
-    "@types/node": "^18"
+    "@types/node": "^18",
+    "@tarojs/taro": "^4.1.9",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@tarojs/taro": ">=3.0.0"
   }
 }
