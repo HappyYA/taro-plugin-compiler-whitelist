@@ -1,6 +1,6 @@
 {
   "name": "@haidilao-private/taro-plugin-compiler-whitelist",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "keywords": [
     "Taro",
@@ -37,8 +37,8 @@
     "webpack-chain": "^6.5.1"
   },
   "devDependencies": {
-    "@types/node": "^18",
     "@tarojs/taro": "^4.1.9",
+    "@types/node": "^18",
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
