@@ -6,8 +6,8 @@
     "Taro",
     "Plugin"
   ],
-  "author": "",
-  "homepage": "",
+  "author": "lijinya93",
+  "homepage": "https://github.com/HappyYA/taro-plugin-compiler-whitelist/blob/main/README.md",
   "license": "MIT",
   "main": "index.js",
   "typings": "types/index.d.ts",
