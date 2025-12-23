@@ -143,13 +143,13 @@ export default (ctx: IPluginContext, pluginOpts: PluginOptions = {}) => {
   if (options.enableFilter) {
     if (options.whitelist && options.blacklist) {
       console.warn(
-        "[taro-plugin-compiler-whitelist] 警告：同时配置了 whitelist 和 blacklist，将先应用白名单再应用黑名单"
+        "[@haidilao-private/taro-plugin-compiler-whitelist] 警告：同时配置了 whitelist 和 blacklist，将先应用白名单再应用黑名单"
       );
     }
 
     if (!options.whitelist && !options.blacklist) {
       console.warn(
-        "[taro-plugin-compiler-whitelist] 警告：未配置 whitelist 或 blacklist，插件将不会过滤任何页面或分包"
+        "[@haidilao-private/taro-plugin-compiler-whitelist] 警告：未配置 whitelist 或 blacklist，插件将不会过滤任何页面或分包"
       );
     }
   }
@@ -197,7 +197,7 @@ export default (ctx: IPluginContext, pluginOpts: PluginOptions = {}) => {
         console.log("webpack config", chain.toConfig());
       } catch (err) {
         console.warn(
-          "[taro-plugin-compiler-whitelist] 启用压缩失败：未找到 terser-webpack-plugin。通常 Taro 项目默认包含此插件，如果未安装请手动安装。"
+          "[@haidilao-private/taro-plugin-compiler-whitelist] 启用压缩失败：未找到 terser-webpack-plugin。通常 Taro 项目默认包含此插件，如果未安装请手动安装。"
         );
       }
     }
@@ -267,7 +267,9 @@ export default (ctx: IPluginContext, pluginOpts: PluginOptions = {}) => {
         const removedPages = originalPages.filter(
           (page) => !filteredPages.includes(page)
         );
-        console.log(`[taro-plugin-compiler-whitelist] 主包页面过滤完成：`);
+        console.log(
+          `[@haidilao-private/taro-plugin-compiler-whitelist] 主包页面过滤完成：`
+        );
         console.log(
           `  原始页面数: ${originalPages.length}, 过滤后: ${filteredPages.length}`
         );
@@ -337,7 +339,9 @@ export default (ctx: IPluginContext, pluginOpts: PluginOptions = {}) => {
           (subPackage) =>
             !filteredSubPackages.some((sp) => sp.root === subPackage.root)
         );
-        console.log(`[taro-plugin-compiler-whitelist] 分包过滤完成：`);
+        console.log(
+          `[@haidilao-private/taro-plugin-compiler-whitelist] 分包过滤完成：`
+        );
         console.log(
           `  原始分包数: ${originalSubPackages.length}, 过滤后: ${filteredSubPackages.length}`
         );
@@ -412,7 +416,7 @@ export default (ctx: IPluginContext, pluginOpts: PluginOptions = {}) => {
                 (page) => !filteredSubPages.includes(page)
               );
               console.log(
-                `[taro-plugin-compiler-whitelist] 子包 "${subPackageRoot}" 页面过滤：`
+                `[@haidilao-private/taro-plugin-compiler-whitelist] 子包 "${subPackageRoot}" 页面过滤：`
               );
               console.log(
                 `  原始页面数: ${originalSubPages.length}, 过滤后: ${filteredSubPages.length}`

@@ -1,4 +1,4 @@
-# taro-plugin-compiler-whitelist
+# @haidilao-private/taro-plugin-compiler-whitelist
 
 > Taro 插件：根据配置项过滤 app.config 文件中的页面
 
@@ -14,11 +14,11 @@
 ## 安装
 
 ```bash
-npm i taro-plugin-compiler-whitelist -D
+npm i @haidilao-private/taro-plugin-compiler-whitelist -D
 # 或
-pnpm add taro-plugin-compiler-whitelist -D
+pnpm add @haidilao-private/taro-plugin-compiler-whitelist -D
 # 或
-yarn add taro-plugin-compiler-whitelist -D
+yarn add @haidilao-private/taro-plugin-compiler-whitelist -D
 ```
 
 ## 使用方法
@@ -41,7 +41,7 @@ yarn add taro-plugin-compiler-whitelist -D
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         whitelist: [
           ['app', ['pages/index/index', 'pages/user/index']], // 主包的特定页面
@@ -59,7 +59,7 @@ const config = {
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         whitelist: [
           ['app'], // 或 ['app', []]，表示主包的所有页面
@@ -77,7 +77,7 @@ const config = {
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         whitelist: [
           ['app', ['pages/index/index']], // 主包的特定页面
@@ -99,7 +99,7 @@ const config = {
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         blacklist: [
           ['app', ['pages/debug/index', 'pages/test/index']], // 排除主包的特定页面
@@ -117,7 +117,7 @@ const config = {
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         blacklist: [
           ['packageTest'], // 或 ['packageTest', []]，排除整个测试分包
@@ -137,7 +137,7 @@ const config = {
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         whitelist: [
           ['app'], // 先保留主包的所有页面
@@ -205,7 +205,7 @@ type FilterRule = [string, string[]?] | [string];
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         enableFilter: false, // 关闭页面过滤
         compress: true, // 开启压缩
@@ -226,7 +226,7 @@ const config = {
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         // 开启压缩功能
         compress: true,
@@ -246,7 +246,7 @@ const config = {
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         whitelist: [
           ['app', ['pages/index/index', 'pages/user/index']],
@@ -264,7 +264,7 @@ const config = {
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         blacklist: [
           ['app', ['pages/test/index', 'pages/debug/index']],
@@ -284,7 +284,7 @@ const isDev = process.env.NODE_ENV === 'development'
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         // 开发环境只编译主包的首页，生产环境编译所有页面
         whitelist: isDev ? [['app', ['pages/index/index']]] : undefined,
@@ -301,7 +301,7 @@ const config = {
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         whitelist: [
           ['packageA'], // packageA 的所有页面
@@ -320,7 +320,7 @@ const config = {
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         blacklist: [
           ['packageTest'], // 排除整个测试分包
@@ -339,7 +339,7 @@ const config = {
 const config = {
   plugins: [
     [
-      'taro-plugin-compiler-whitelist',
+      '@haidilao-private/taro-plugin-compiler-whitelist',
       {
         whitelist: [
           ['app', ['pages/index/index']], // 主包只保留首页
