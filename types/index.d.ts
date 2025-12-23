@@ -30,6 +30,11 @@ export interface PluginOptions {
      */
     verbose?: boolean;
     /**
+     * 是否启用页面过滤
+     * @default true
+     */
+    enableFilter?: boolean;
+    /**
      * 是否启用代码压缩
      * @default false
      */

@@ -34,6 +34,11 @@ export interface PluginOptions {
    */
   verbose?: boolean;
   /**
+   * 是否启用页面过滤
+   * @default true
+   */
+  enableFilter?: boolean;
+  /**
    * 是否启用代码压缩
    * @default false
    */
@@ -130,20 +135,23 @@ function filterSubPackagePages(
 export default (ctx: IPluginContext, pluginOpts: PluginOptions = {}) => {
   const options: PluginOptions = {
     verbose: true,
+    enableFilter: true,
     ...pluginOpts,
   };
 
   // 参数校验
-  if (options.whitelist && options.blacklist) {
-    console.warn(
-      "[taro-plugin-compiler-whitelist] 警告：同时配置了 whitelist 和 blacklist，将先应用白名单再应用黑名单"
-    );
-  }
+  if (options.enableFilter) {
+    if (options.whitelist && options.blacklist) {
+      console.warn(
+        "[taro-plugin-compiler-whitelist] 警告：同时配置了 whitelist 和 blacklist，将先应用白名单再应用黑名单"
+      );
+    }
 
-  if (!options.whitelist && !options.blacklist) {
-    console.warn(
-      "[taro-plugin-compiler-whitelist] 警告：未配置 whitelist 或 blacklist，插件将不会过滤任何页面或分包"
-    );
+    if (!options.whitelist && !options.blacklist) {
+      console.warn(
+        "[taro-plugin-compiler-whitelist] 警告：未配置 whitelist 或 blacklist，插件将不会过滤任何页面或分包"
+      );
+    }
   }
 
   // 修改 Webpack 配置，压缩指定文件
@@ -197,6 +205,11 @@ export default (ctx: IPluginContext, pluginOpts: PluginOptions = {}) => {
 
   // 修改 App 配置，过滤页面
   ctx.modifyAppConfig(({ appConfig }: { appConfig: AppConfig }) => {
+    // 如果未启用过滤，则直接返回
+    if (!options.enableFilter) {
+      return;
+    }
+
     const { whitelist = [], blacklist = [] } = options;
 
     // 处理主包页面

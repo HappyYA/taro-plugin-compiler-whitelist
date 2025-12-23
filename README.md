@@ -160,6 +160,7 @@ const config = {
 | `whitelist` | `[string, string[]?][]` | 否 | 白名单：只保留匹配的页面。格式：`[[分包名称, 页面数组?], ...]` |
 | `blacklist` | `[string, string[]?][]` | 否 | 黑名单：排除匹配的页面。格式：`[[分包名称, 页面数组?], ...]` |
 | `verbose` | `boolean` | 否 | 是否显示过滤日志，默认 `true` |
+| `enableFilter` | `boolean` | 否 | 是否启用页面过滤，默认 `true` |
 | `compress` | `boolean` | 否 | 是否启用代码压缩，默认 `false` |
 | `compressFiles` | `string[]` | 否 | 指定需要压缩的文件名列表，默认 `['common', 'taro', 'vendors', 'app']` |
 
@@ -196,7 +197,26 @@ type FilterRule = [string, string[]?] | [string];
 
 ## 示例场景
 
-### 场景 1：手动开启文件压缩
+### 场景 1：手动开启文件压缩，关闭页面过滤
+
+如果你只想使用文件压缩功能，不进行页面过滤：
+
+```js
+const config = {
+  plugins: [
+    [
+      'taro-plugin-compiler-whitelist',
+      {
+        enableFilter: false, // 关闭页面过滤
+        compress: true, // 开启压缩
+        verbose: true,
+      },
+    ],
+  ],
+}
+```
+
+### 场景 2：手动开启文件压缩，同时进行页面过滤
 
 默认情况下，Taro 会根据模式自动配置压缩。使用此插件可以强制压缩指定文件（不论环境）：
 
