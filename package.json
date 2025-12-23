@@ -1,5 +1,5 @@
 {
-  "name": "taro-plugin-compiler-whitelist",
+  "name": "@haidilao-private/taro-plugin-compiler-whitelist",
   "version": "1.0.0",
   "description": "",
   "keywords": [
@@ -16,6 +16,11 @@
     "index.js",
     "types"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://registry-npm-pos.hdlapis.com/",
+    "tag": "latest"
+  },
   "repository": {
     "type": "git",
     "url": ""
