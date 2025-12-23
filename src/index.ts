@@ -193,8 +193,6 @@ export default (ctx: IPluginContext, pluginOpts: PluginOptions = {}) => {
             extractComments: false, // 不提取注释
           },
         ]);
-        //打印webpack config
-        console.log("webpack config", chain.toConfig());
       } catch (err) {
         console.warn(
           "[@haidilao-private/taro-plugin-compiler-whitelist] 启用压缩失败：未找到 terser-webpack-plugin。通常 Taro 项目默认包含此插件，如果未安装请手动安装。"
