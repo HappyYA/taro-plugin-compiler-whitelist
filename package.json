@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/HappyYA/taro-plugin-compiler-whitelist.git"
   },
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/HappyYA/taro-plugin-compiler-whitelist/issues"
   },
   "dependencies": {
     "@tarojs/service": "^4.1.9",
