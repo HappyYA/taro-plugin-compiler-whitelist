@@ -29,6 +29,16 @@ export interface PluginOptions {
      * @default true
      */
     verbose?: boolean;
+    /**
+     * 是否启用代码压缩
+     * @default false
+     */
+    compress?: boolean;
+    /**
+     * 指定需要压缩的文件名列表（支持字符串，内部会处理为正则）
+     * @default ['common', 'taro', 'vendors', 'app']
+     */
+    compressFiles?: string[];
 }
 /**
  * Taro 页面过滤插件

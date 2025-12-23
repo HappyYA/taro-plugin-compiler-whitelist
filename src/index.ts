@@ -1,5 +1,6 @@
 import type { IPluginContext } from "@tarojs/service";
 import type { AppConfig } from "@tarojs/taro";
+import * as webpackChain from "webpack-chain";
 
 /**
  * 过滤规则项
@@ -32,6 +33,16 @@ export interface PluginOptions {
    * @default true
    */
   verbose?: boolean;
+  /**
+   * 是否启用代码压缩
+   * @default false
+   */
+  compress?: boolean;
+  /**
+   * 指定需要压缩的文件名列表（支持字符串，内部会处理为正则）
+   * @default ['common', 'taro', 'vendors', 'app']
+   */
+  compressFiles?: string[];
 }
 
 /**
@@ -134,6 +145,55 @@ export default (ctx: IPluginContext, pluginOpts: PluginOptions = {}) => {
       "[taro-plugin-compiler-whitelist] 警告：未配置 whitelist 或 blacklist，插件将不会过滤任何页面或分包"
     );
   }
+
+  // 修改 Webpack 配置，压缩指定文件
+  ctx.modifyWebpackChain(({ chain }: { chain: webpackChain }) => {
+    // 只有在明确开启压缩时才执行
+    if (options.compress) {
+      try {
+        // 尝试加载 terser-webpack-plugin
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const TerserPlugin = require("terser-webpack-plugin");
+
+        // 确保开启了 minimize
+        chain.optimization.minimize(true);
+
+        const compressFiles = options.compressFiles || [
+          "common",
+          "taro",
+          "vendors",
+          "app",
+        ];
+
+        // 构造正则表达式来匹配文件名
+        // 例如：/(common|taro|vendors|app)\.js$/
+        const includePattern = new RegExp(
+          `(${compressFiles.join("|")})\\.js$`,
+          "i"
+        );
+
+        // 添加或修改 minimizer
+        chain.optimization.minimizer("terserPlugin").use(TerserPlugin, [
+          {
+            test: /\.js(\?.*)?$/i,
+            include: includePattern,
+            parallel: true,
+            terserOptions: {
+              compress: true,
+              mangle: true,
+            },
+            extractComments: false, // 不提取注释
+          },
+        ]);
+        //打印webpack config
+        console.log("webpack config", chain.toConfig());
+      } catch (err) {
+        console.warn(
+          "[taro-plugin-compiler-whitelist] 启用压缩失败：未找到 terser-webpack-plugin。通常 Taro 项目默认包含此插件，如果未安装请手动安装。"
+        );
+      }
+    }
+  });
 
   // 修改 App 配置，过滤页面
   ctx.modifyAppConfig(({ appConfig }: { appConfig: AppConfig }) => {
@@ -373,6 +433,5 @@ export default (ctx: IPluginContext, pluginOpts: PluginOptions = {}) => {
         (appConfig as any).subpackages = finalSubPackages;
       }
     }
-    console.log("appConfig", appConfig);
   });
 };
