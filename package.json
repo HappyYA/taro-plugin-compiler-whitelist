@@ -1,6 +1,6 @@
 {
   "name": "taro-plugin-compiler-whitelist",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Taro 插件：根据配置项过滤 app.config 文件中的页面",
   "keywords": [
     "Taro",
